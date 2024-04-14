@@ -1,9 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Choreo Sample - Book List - Nodejs REST API Service
+  title: Events Registration - Nodejs REST API Service
   description: >-
-    This is a sample API specification for a simple reading list application with in-memory cache
-    written in Nodejs
+    An API to list events and save bookings.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -14,16 +13,16 @@ externalDocs:
 servers:
   - url: http://localhost:8080
 tags:
-  - name: books
-    description: In-memory book list cache API
+  - name: eents
+    description: In-memory event list cache API
 paths:
-  /books:
-    summary: List all books
+  /events:
+    summary: List all events
     get:
-      summary: List all books
-      operationId: ListAllBooks
+      summary: List all events
+      operationId: ListAllEvents
       tags:
-        - books
+        - events
       responses:
         "200":
           description: Successful operation
@@ -47,7 +46,7 @@ paths:
             schema:
               $ref: "#/components/schemas/KeyValue"
 
-  /books/{uuid}:
+  /events/{uuid}:
     summary: Get book by UUID
     get:
       tags:
@@ -70,24 +69,6 @@ paths:
                 $ref: "#/components/schemas/KeyValue"
         "404":
           description: UUID not found
-    delete:
-      tags:
-        - books
-      summary: Delete book by UUID
-      description: Deletes a single book based on the UUID supplied
-      operationId: DeleteBookByUUID
-      parameters:
-        - name: uuid
-          in: path
-          description: UUID of book to delete
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Successful operation
-        "404":
-          description: ISBN not found
     put:
       tags:
         - books
